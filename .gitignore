@@ -11,6 +11,7 @@ npm-debug.*
 web-build/
 web-report/
 yarn-error.log
+.eslintcache
 
 # macOS
 .DS_Store

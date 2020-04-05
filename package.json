@@ -8,7 +8,7 @@
     "eject": "expo eject",
     "prettier": "prettier --write .",
     "lint": "eslint --ignore-path .gitignore --fix --quiet *.js **/*.js",
-    "test": "jest --watchAll",
+    "test": "jest --no-cache",
     "test:modifiedOnly": "./scripts/testModifiedOnly.sh"
   },
   "jest": {
@@ -64,8 +64,7 @@
   "lint-staged": {
     "**/*.js": [
       "eslint --cache --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }

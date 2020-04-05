@@ -1,17 +1,13 @@
-import React, {useCallback, Fragment} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {RectButton, ScrollView} from 'react-native-gesture-handler';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {NavigationContainer} from '@react-navigation/native';
-
-import BottomTabNavigator from '../navigation/BottomTabNavigator';
 // import useLinking from '../navigation/useLinking';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import HomeScreen from './HomeScreen';
+import LinksScreen from './LinksScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -28,7 +24,7 @@ const getHeaderTitle = (route) => {
     default:
       return '';
   }
-}
+};
 
 const RootAuthorizedScreen = ({navigation, route}) => {
   // Set the header title on the parent stack navigator depending on the
@@ -37,14 +33,13 @@ const RootAuthorizedScreen = ({navigation, route}) => {
   navigation.setOptions({headerTitle: getHeaderTitle(route)});
 
   return (
-    <BottomTab.Navigator
-      initialRouteName={INITIAL_ROUTE_NAME}
-    >
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={{
           title: 'Get Started',
+          // eslint-disable-next-line
           tabBarIcon: ({focused}) => (
             <TabBarIcon focused={focused} name="md-code-working" />
           ),
@@ -55,6 +50,7 @@ const RootAuthorizedScreen = ({navigation, route}) => {
         component={LinksScreen}
         options={{
           title: 'Resources',
+          // eslint-disable-next-line
           tabBarIcon: ({focused}) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
@@ -62,6 +58,12 @@ const RootAuthorizedScreen = ({navigation, route}) => {
       />
     </BottomTab.Navigator>
   );
-}
+};
+
+RootAuthorizedScreen.propTypes = {
+  // From 'react-navtive' screen. @see App.js
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  route: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default RootAuthorizedScreen;

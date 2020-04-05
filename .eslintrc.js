@@ -23,6 +23,8 @@ module.exports = {
      */
     'global-require': 'off',
 
+    'react/prop-types': ['error'],
+
     /**
      * We use only JS files.
      */
