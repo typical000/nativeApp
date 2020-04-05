@@ -1,16 +1,21 @@
-import * as React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {SplashScreen} from 'expo';
+
+// @todo We don't need such things
 import * as Font from 'expo-font';
 import {Ionicons} from '@expo/vector-icons';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import BottomTabNavigator from './navigation/BottomTabNavigator';
+import RootAnonymousScreen from './screens/RootAnonymousScreen';
+import RootAuthorizedScreen from './screens/RootAuthorizedScreen';
+
 import useLinking from './navigation/useLinking';
 
-const Stack = createStackNavigator();
+const Root = createStackNavigator();
 
 const styles = StyleSheet.create({
   container: {
@@ -20,13 +25,15 @@ const styles = StyleSheet.create({
 });
 
 const App = ({skipLoadingScreen}) => {
-  const [isLoadingComplete, setLoadingComplete] = React.useState(false);
-  const [initialNavigationState, setInitialNavigationState] = React.useState();
-  const containerRef = React.useRef();
+  const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [initialNavigationState, setInitialNavigationState] = useState();
+  const containerRef = useRef();
+
+  // @todo What is it?
   const {getInitialState} = useLinking(containerRef);
 
   // Load any resources or data that we need prior to rendering the app
-  React.useEffect(() => {
+  useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
@@ -54,6 +61,12 @@ const App = ({skipLoadingScreen}) => {
   if (!isLoadingComplete && !skipLoadingScreen) {
     return null;
   }
+
+  // @todo Check cookie after loading and based on it - open "anonymous" or "authorized" parts
+
+  // @todo
+  // How to overwrite headers: https://reactnavigation.org/docs/header-buttons
+
   return (
     <View style={styles.container}>
       {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
@@ -61,16 +74,21 @@ const App = ({skipLoadingScreen}) => {
         ref={containerRef}
         initialState={initialNavigationState}
       >
-        <Stack.Navigator>
-          <Stack.Screen name="Root" component={BottomTabNavigator} />
-        </Stack.Navigator>
+        <Root.Navigator>
+          <Root.Screen name="Anonymous" component={RootAnonymousScreen} />
+          <Root.Screen name="Authorized" component={RootAuthorizedScreen} />
+        </Root.Navigator>
       </NavigationContainer>
     </View>
   );
 };
 
 App.propTypes = {
-  skipLoadingScreen: PropTypes.bool.isRequired,
+  skipLoadingScreen: PropTypes.bool,
 };
+
+App.defaultProps = {
+  skipLoadingScreen: false,
+}
 
 export default App;

@@ -1,16 +1,24 @@
-/* eslint-disable react/prop-types */
+import React, {useCallback, Fragment} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
+// import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import * as React from 'react';
 
+import {NavigationContainer} from '@react-navigation/native';
+
+import BottomTabNavigator from '../navigation/BottomTabNavigator';
+// import useLinking from '../navigation/useLinking';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 
+
+
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
-function getHeaderTitle(route) {
+const getHeaderTitle = (route) => {
   const routeName =
     route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
@@ -24,16 +32,16 @@ function getHeaderTitle(route) {
   }
 }
 
-
-// @todo Deprecated. Should be removed
-export default function BottomTabNavigator({navigation, route}) {
+const RootAuthorizedScreen = ({navigation, route}) => {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({headerTitle: getHeaderTitle(route)});
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator
+      initialRouteName={INITIAL_ROUTE_NAME}
+    >
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
@@ -57,3 +65,5 @@ export default function BottomTabNavigator({navigation, route}) {
     </BottomTab.Navigator>
   );
 }
+
+export default RootAuthorizedScreen;
