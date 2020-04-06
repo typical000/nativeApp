@@ -6,8 +6,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // import useLinking from '../navigation/useLinking';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from './HomeScreen';
-import LinksScreen from './LinksScreen';
+import HomeScreen from './authorized/HomeScreen';
+import LinksScreen from './authorized/LinksScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -26,7 +26,7 @@ const getHeaderTitle = (route) => {
   }
 };
 
-const RootAuthorizedScreen = ({navigation, route}) => {
+const AuthorizedScreen = ({navigation, route}) => {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
@@ -60,10 +60,10 @@ const RootAuthorizedScreen = ({navigation, route}) => {
   );
 };
 
-RootAuthorizedScreen.propTypes = {
+AuthorizedScreen.propTypes = {
   // From 'react-navtive' screen. @see App.js
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
   route: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default RootAuthorizedScreen;
+export default AuthorizedScreen;

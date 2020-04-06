@@ -1,5 +1,8 @@
 const tintColor = '#2f95dc';
 
+/**
+ * @depreacted
+ */
 export default {
   tintColor,
   tabIconDefault: '#ccc',

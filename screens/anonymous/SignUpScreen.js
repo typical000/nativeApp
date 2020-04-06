@@ -12,16 +12,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const WelcomeScreen = ({navigation}) => (
+const SignUpScreen = () => (
   <ScrollView
     style={styles.container}
     contentContainerStyle={styles.contentContainer}
   >
-    <Text>
-      Welcome!
-    </Text>
+    <Text>Welcome! Sign up.</Text>
   </ScrollView>
 );
 
-
-export default WelcomeScreen;
+export default SignUpScreen;

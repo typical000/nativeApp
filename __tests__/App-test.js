@@ -5,7 +5,10 @@ import * as React from 'react';
 // import NavigationTestUtils from 'react-navigation/NavigationTestUtils';
 import renderer from 'react-test-renderer';
 
+import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
 import App from '../App';
+
+jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
 jest.mock('expo', () => ({
   AppLoading: 'AppLoading',

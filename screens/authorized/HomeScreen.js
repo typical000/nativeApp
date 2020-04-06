@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import {MonoText} from '../components/StyledText';
+import {MonoText} from '../../components/StyledText';
 
 const styles = StyleSheet.create({
   container: {
@@ -128,8 +128,8 @@ export default function HomeScreen() {
           <Image
             source={
               __DEV__
-                ? require('../static/images/robot-dev.png')
-                : require('../static/images/robot-prod.png')
+                ? require('../../static/images/robot-dev.png')
+                : require('../../static/images/robot-prod.png')
             }
             style={styles.welcomeImage}
           />
