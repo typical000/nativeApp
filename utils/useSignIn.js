@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 // eslint-disable-next-line
-import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
 import {useMutation} from '@apollo/react-hooks';
 
 import AUTH_TOKEN_QUERY from '../graphql/queries/authToken';

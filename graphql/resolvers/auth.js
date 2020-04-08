@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 
-import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
 
 /**
  * @param {Number} ms
@@ -36,17 +36,19 @@ const ARGUMENT_ERROR_MESSAGE = 'This login is reserved.';
 export default {
   resolvers: {
     Query: {
-      authToken: async () => {
-        let userToken;
+      authToken: () => {
+        // let userToken;
 
-        try {
-          userToken = await AsyncStorage.getItem('@userToken');
-        } catch (e) {
-          // Restoring token failed
-          console.warn(e);
-        }
+        // try {
+        //   userToken = await AsyncStorage.getItem('@userToken');
+        // } catch (e) {
+        //   // Restoring token failed
+        //   console.warn(e);
+        // }
 
-        return userToken;
+        // return userToken;
+
+        return '';
       },
     },
     Mutation: {

@@ -37,7 +37,7 @@ const AppWithProviders = (props) => (
  * resources loading, user auth check, etc.
  */
 const App = ({skipLoadingScreen}) => {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [isLoadingComplete, setLoadingComplete] = useState(skipLoadingScreen);
   const [initialNavigationState, setInitialNavigationState] = useState();
   const containerRef = useRef();
 
@@ -58,8 +58,8 @@ const App = ({skipLoadingScreen}) => {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
-          [font.regular]: require('./static/fonts/Montserrat-Regular.ttf'),
-          [font.bold]: require('./static/fonts/Montserrat-SemiBold.ttf'),
+          [font.type.regular]: require('./static/fonts/Montserrat-Regular.ttf'),
+          [font.type.bold]: require('./static/fonts/Montserrat-SemiBold.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
@@ -73,7 +73,7 @@ const App = ({skipLoadingScreen}) => {
     loadResourcesAndDataAsync();
   }, [getInitialState]);
 
-  if (!isLoadingComplete && !skipLoadingScreen && isTokenLoading) {
+  if (!isLoadingComplete || isTokenLoading) {
     return null;
   }
 
