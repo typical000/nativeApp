@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Logo from '../../components/Logo';
 import Row from '../../components/ui/row';
 import Container from '../../components/ui/container';
+import Separator from '../../components/ui/separator';
 import {Button, ButtonSecondary} from '../../components/ui/button';
 
 const WelcomeScreen = ({navigation}) => {
@@ -22,6 +23,9 @@ const WelcomeScreen = ({navigation}) => {
       </Row>
       <Row>
         <Button onPress={onSignInPress}>Sign in</Button>
+      </Row>
+      <Row>
+        <Separator>OR</Separator>
       </Row>
       <Row last>
         <ButtonSecondary onPress={onSignUpPress}>Sign up</ButtonSecondary>

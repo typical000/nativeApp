@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import PropTypes from 'prop-types';
 
@@ -11,11 +11,15 @@ const styles = StyleSheet.create({
     backgroundColor: color.appBackground,
   },
   contentContainer: {
-    padding: 32,
+    paddingHorizontal: 32,
+    paddingTop: 8,
+    paddingBottom: 16,
+    minHeight: '100%',
   },
-
-  centered: {
+  content: {
     flex: 1,
+  },
+  centered: {
     justifyContent: 'center',
   },
 });
@@ -24,15 +28,16 @@ const styles = StyleSheet.create({
  * Wrapping container around any type of content
  */
 const Container = ({children, centered}) => (
-  <ScrollView
-    style={[styles.container]}
-    contentContainerStyle={[
-      styles.contentContainer,
-      centered && styles.centered,
-    ]}
-  >
-    {children}
-  </ScrollView>
+  <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <View style={[styles.content, centered && styles.centered]}>
+        {children}
+      </View>
+    </ScrollView>
+  </View>
 );
 
 Container.propTypes = {

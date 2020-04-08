@@ -1,5 +1,7 @@
 export default {
   appBackground: '#fff', // Background of entire application
+  divider: '#f5f5f5',
+
   // Text
   text: {
     default: '#1a1a1a',

@@ -13,29 +13,56 @@ const styles = StyleSheet.create({
   last: {
     marginBottom: 0,
   },
+  // Alignment
+  left: {
+    alignItems: 'flex-start',
+  },
+  stretch: {
+    alignItems: 'stretch',
+  },
+  center: {
+    alignItems: 'center',
+  },
+  right: {
+    alignItems: 'flex-end',
+  },
 });
 
 /**
  * Basic row for creating vertical rythm
  */
-const Row = ({children, first, last, ...props}) => (
+const Row = ({children, first, last, align, ...props}) => (
   <View
-    style={[styles.row, first && styles.first, last && styles.last]}
+    style={[
+      styles.row,
+      styles[align],
+      first && styles.first,
+      last && styles.last,
+    ]}
     {...props}
   >
     {children}
   </View>
 );
 
+Row.ALIGN = {
+  LEFT: 'left',
+  RIGHT: 'right',
+  CENTER: 'center',
+  STRETCH: 'stretch',
+};
+
 Row.propTypes = {
   children: PropTypes.node.isRequired,
   first: PropTypes.bool,
   last: PropTypes.bool,
+  align: PropTypes.oneOf(Object.values(Row.ALIGN)),
 };
 
 Row.defaultProps = {
   first: false,
   last: false,
+  align: Row.ALIGN.STRETCH,
 };
 
 export default Row;
